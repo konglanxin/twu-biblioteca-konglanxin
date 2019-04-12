@@ -14,6 +14,7 @@ public class MenuOptionTest {
     @Test
     public void selectOption1() {
         Library library = new Library();
+        MovieList movelist = new MovieList();
         List<String> options = new ArrayList(Arrays.asList(
                 "1-List of books",
                 "2-Checkout a book",
@@ -26,7 +27,7 @@ public class MenuOptionTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
-        menuOption.selectOption(library);
+        menuOption.selectOption(library,movelist);
 
         assertEquals("-------------------\n" +
                 "Title/ Author/ Year Published\n" +
@@ -41,6 +42,6 @@ public class MenuOptionTest {
                 "4-Quit", out.toString().trim());
     }
 
-  
+
 
 }

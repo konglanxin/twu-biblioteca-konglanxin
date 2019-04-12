@@ -25,7 +25,7 @@ public class MenuOption {
 
     }
 
-    public void selectOption(Library library){
+    public void selectOption(Library library, MovieList movielist){
         Scanner sc = new Scanner(System.in);
         if (sc.hasNext()) {
             int optionIndex = sc.nextInt();
@@ -33,7 +33,6 @@ public class MenuOption {
                 switch (optionIndex){
                     case 1:
                         System.out.println("-------------------");
-//                        System.out.printf("%-40s %-25s %-35s\n", "Title", "Author", "Year Published");
                         System.out.printf("%s %s %s\n","Title/", "Author/", "Year Published");
                         for (Book book : library.getBooks()) {
                             System.out.printf("%s %s %s\n",book.getTitle()+"/", book.getAuthor()+"/", book.getYearPublished());
@@ -62,13 +61,35 @@ public class MenuOption {
                     case 4:
                         System.exit(0);
                         break;
-
-
+                    case 5:
+                        System.out.println("-------------------");
+                        System.out.printf("%s %s %s\n","Name/", "Year/", "Director/", "Rating");
+                        for (Movie movie : movielist.getMovies()) {
+                            System.out.printf("%s %s %s\n",movie.getName()+"/", movie.getYear()+"/", movie.getDirector(), movie.getDirector(), movie.getRating());
+                        }
+                        break;
+                    case 6:
+                        System.out.println("Please enter the movie name:");
+                        String tag_movie = sc.nextLine();
+                        String movieName = sc.nextLine();
+                        if(library.searchBook(movieName)){
+                            System.out.println("Thank you! Enjoy the movie!");
+                        }else{
+                            System.out.println("Sorry, that movie is not available");
+                        }
+                        break;
+                    case 7:
+                        System.out.println("Login successfully");
+                        UserManager userManager = new UserManager();
+                        System.out.printf("%s %s %s\n","Name/", "email/", "phoneNumber/");
+                        Users user = userManager.getUsers();
+                        System.out.printf("%s %s %s\n",user.getName()+"/", user.getEmail()+"/", user.getPhoneNumber());
+                        break;
                 }
             }
 
             showMenu();
-            selectOption(library);
+            selectOption(library, movielist);
         }
     }
 
